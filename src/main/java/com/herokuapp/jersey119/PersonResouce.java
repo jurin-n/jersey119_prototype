@@ -15,18 +15,45 @@ import javax.ws.rs.core.Response;
 
 @Path("/person")
 public class PersonResouce {
+	
+	@GET
+	@Path("{id}")
+	//@Produces("application/json; charset=shift-jis") //shift-jisだと Javaオブジェクト -> JSON変換で文字化けする
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getLinkedHashMap(@PathParam("id") String id){
+		LinkedHashMap<String,Object> res = new LinkedHashMap<>();
+		res.put("id", id);
+		res.put("name", "森鷗外");
+		res.put("age", 30);
+
+		ArrayList<ListData> list = new ArrayList<ListData>();
+		list.add(new ListData("テスト　太郎","20150501"));
+		list.add(new ListData("bob","20150601"));
+		list.add(new ListData("ccc","20150701"));
+		list.add(new ListData("ddd","20150801"));
+		res.put("list",list);
+		
+		return Response
+				.status(Response.Status.OK)
+				.entity(res)
+				.build();	
+	}
+	
+	/*
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	*/
 	public Response getPerson(@PathParam("id") String id){
 		Person p = new Person();
 		p.setId(id);
-		p.setName("test yamada");
+		p.setName("森鷗外");
 		p.setAge(30);
 		
 		ArrayList<ListData> list = new ArrayList<ListData>();
-		list.add(new ListData("aaa","20150501"));
+		list.add(new ListData("テスト　太郎","20150501"));
 		list.add(new ListData("bob","20150601"));
 		list.add(new ListData("ccc","20150701"));
 		list.add(new ListData("ddd","20150801"));
@@ -40,7 +67,7 @@ public class PersonResouce {
 	
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=shift_jis")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response postPerson(LinkedHashMap<String,Object> map){
 
