@@ -44,7 +44,7 @@ public class JSONMarshaller implements MessageBodyWriter<LinkedHashMap<String,Ob
 			Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap<String, Object> httpHeaders, OutputStream outputStream)
 			throws IOException, WebApplicationException {
-		ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper();		
 		mapper.writeValue(outputStream,target);
 	}
 }

@@ -18,7 +18,7 @@ public class PersonResouce {
 	
 	@GET
 	@Path("{id}")
-	//@Produces("application/json; charset=shift-jis") //shift-jisだと Javaオブジェクト -> JSON変換で文字化けする
+	//@Produces("application/json; charset=Shift_JIS") //Shift_JIS指定すると文字化ける
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getLinkedHashMap(@PathParam("id") String id){
