@@ -14,8 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/person")
-public class PersonResouce {
-	
+public class PersonResouce extends AbstractResouce {
 	@GET
 	@Path("{id}")
 	//@Produces("application/json; charset=Shift_JIS") //Shift_JIS指定すると文字化ける
@@ -24,7 +23,7 @@ public class PersonResouce {
 	public Response getLinkedHashMap(@PathParam("id") String id){
 		LinkedHashMap<String,Object> res = new LinkedHashMap<>();
 		res.put("id", id);
-		res.put("name", "森鷗外");
+		res.put("name", "森鷗外" + context.getAttribute("db-resource"));
 		res.put("age", 30);
 
 		ArrayList<ListData> list = new ArrayList<ListData>();
