@@ -23,9 +23,8 @@ public class PersonResouce extends AbstractResouce {
 	public Response getLinkedHashMap(@PathParam("id") String id){
 		LinkedHashMap<String,Object> res = new LinkedHashMap<>();
 		res.put("id", id);
-		res.put("name", "森鷗外" + context.getAttribute("db-resource"));
+		res.put("name", "テスト太郎");
 		res.put("age", 30);
-
 		ArrayList<ListData> list = new ArrayList<ListData>();
 		list.add(new ListData("テスト　太郎","20150501"));
 		list.add(new ListData("bob","20150601"));
