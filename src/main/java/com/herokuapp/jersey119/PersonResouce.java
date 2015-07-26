@@ -14,13 +14,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/person")
-public class PersonResouce extends AbstractResouce {
+public class PersonResouce extends AbstractDataAccess {
+	
 	@GET
 	@Path("{id}")
 	//@Produces("application/json; charset=Shift_JIS") //Shift_JIS指定すると文字化ける
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getLinkedHashMap(@PathParam("id") String id){
+		System.out.println("*** PersonResouce getPerson start ***");
+
 		LinkedHashMap<String,Object> res = new LinkedHashMap<>();
 		res.put("id", id);
 		res.put("name", "テスト太郎");
@@ -32,6 +35,7 @@ public class PersonResouce extends AbstractResouce {
 		list.add(new ListData("ddd","20150801"));
 		res.put("list",list);
 		
+		System.out.println("*** PersonResouce getPerson end ***");
 		return Response
 				.status(Response.Status.OK)
 				.entity(res)
